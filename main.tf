@@ -44,7 +44,7 @@ module "vault" {
   name = var.hostname
   instance_count = 1
 
-  user_data_base64 = base64gzip(template_file.userdata.rendered)
+  user_data_base64 = base64gzip(data.template_file.userdata.rendered)
 
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
