@@ -6,7 +6,7 @@ data template_file "userdata" {
     vault_conf       = base64encode(templatefile("${path.module}/templates/vault.conf",
       {
         listener     = module.vault.private_ip[0]
-        ip_addresses = module.vault.private_ip[0]
+        ip_addresses = [module.vault.private_ip[0]]
         node_id      = "vault"
         leader_ip    = module.vault.private_ip[0]
         kms_key_id   = aws_kms_key.this.id
