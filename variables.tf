@@ -30,3 +30,8 @@ variable slack_webhook {
   type = string
   default = ""
 }
+
+variable private_ip {
+  type = string
+  default = "10.0.101.161"
+}
