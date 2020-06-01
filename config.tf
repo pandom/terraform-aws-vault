@@ -7,7 +7,7 @@ data template_file "userdata" {
       {
         listener     = module.vault.private_ip[0]
         ip_addresses = [module.vault.private_ip[0]]
-        node_id      = "vault"
+        node_id      = var.hostname
         leader_ip    = module.vault.private_ip[0]
         kms_key_id   = aws_kms_key.this.id
       }
