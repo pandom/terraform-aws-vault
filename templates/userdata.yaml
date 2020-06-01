@@ -1,0 +1,22 @@
+#cloud-config
+packages:
+  - jq
+
+write_files:
+  - path: /etc/vault.d/vault.conf
+    content: ${vault_conf}
+    permissions: '0644'
+    owner: vault:vault
+    encoding: b64
+  - path: /etc/environment
+    content: |
+      VAULT_ADDR=http://${ip_address}:8200
+    append: true
+
+runcmd:
+  - systemctl enable vault
+  - systemctl restart vault
+  - sleep 15 && payload=$(vault operator init --format=json)
+  - echo $payload >> /etc/vault.d/vault_init
+  - data=$(echo $payload | jq '{"text": .root_token}')
+  - curl -X POST -H 'Content-type: application/json' --data "$data" ${slack_webhook}
