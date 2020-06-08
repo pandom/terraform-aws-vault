@@ -79,11 +79,15 @@ module "security_group_vault" {
   description = "vault http access"
   vpc_id      = local.vpc_id
 
-  ingress_cidr_blocks = [
-    "220.235.156.186/32",
-    "10.0.0.0/16"
-    ]
-  rules = { "vault":[ 8200, 8200, "tcp", "HashiCorp Vault traffic"]}
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 8200
+      to_port     = 8200
+      protocol    = "tcp"
+      description = "Vault ingress"
+      cidr_blocks = "10.10.0.0/16,220.235.156.186/32"
+    }
+  ]
   tags = var.tags
 }
 

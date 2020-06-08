@@ -1,6 +1,6 @@
 [Unit]
 Description=Vault Agent
-After=network.online
+After=network-online.target
 
 [Service]
 Restart=on-failure
