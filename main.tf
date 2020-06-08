@@ -85,7 +85,7 @@ module "security_group_vault" {
       to_port     = 8200
       protocol    = "tcp"
       description = "Vault ingress"
-      cidr_blocks = "10.10.0.0/16,220.235.156.186/32"
+      cidr_blocks = "10.10.0.0/16,220.235.151.137/32"
     }
   ]
   tags = var.tags
