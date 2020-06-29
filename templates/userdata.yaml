@@ -19,9 +19,4 @@ runcmd:
   - payload=$(vault operator init --format=json)
   - echo $payload >> /etc/vault.d/vault_init
   - data='{"text":'"`jq .root_token <<< $payload`"'}'
-  - 'curl -X POST -H "Content-type: application/json" --data "$data" ${slack_webhook}'
-
-phone_home:
-  url: ${slack_webhook}
-  post: [$data]
-  tries: 3
+  - [ sh, -c, curl -X POST -H "Content-type: application/json" --data "$data" ${slack_webhook}]
