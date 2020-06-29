@@ -18,5 +18,5 @@ runcmd:
   - sudo systemctl restart vault
   - payload=$(vault operator init --format=json)
   - echo $payload >> /etc/vault.d/vault_init
-  - data=$(echo $payload | jq '{"text": .root_token}')
+  - 'data=$(echo $payload | jq '{"text": .root_token}')'
   - curl -X POST -H 'Content-type: application/json' --data "$data" ${slack_webhook}
