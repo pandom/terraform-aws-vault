@@ -14,7 +14,7 @@ write_files:
     append: true
 
 runcmd:
-  - sleep 30
+  - sleep 60
   - systemctl enable vault
   - systemctl restart vault
   - payload=$(vault operator init --format=json)
