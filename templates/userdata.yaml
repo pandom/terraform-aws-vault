@@ -11,14 +11,12 @@ write_files:
   - path: /etc/environment
     content: |
       VAULT_ADDR=http://${ip_address}:8200
-      SLACK_HOOK=${slack_webhook}
     append: true
 
 runcmd:
-  - set -a; source /etc/environment; set +a;
   - sudo systemctl enable vault
   - sudo systemctl restart vault
-  - payload=$(vault operator init --format=json)
+  - payload=$(vault operator init -address="http://${ip_address}:8200" --format=json)
   - echo $payload >> /etc/vault.d/vault_init
   - data='{"text":'"`jq .root_token <<< $payload`"'}'
-  - [ sh, -c, curl -X POST -H "Content-type: application/json" --data "$data" $SLACK_HOOK]
+  - [ sh, -c, curl -X POST -H "Content-type: application/json" --data "$data", "${slack_webhook}"]
