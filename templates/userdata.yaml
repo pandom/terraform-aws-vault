@@ -15,6 +15,7 @@ write_files:
     append: true
 
 runcmd:
+  - set -a; source /etc/environment; set +a;
   - sudo systemctl enable vault
   - sudo systemctl restart vault
   - payload=$(vault operator init --format=json)
