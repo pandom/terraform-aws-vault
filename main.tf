@@ -34,7 +34,7 @@ data aws_ami "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["753646501470"] # HashiCorp account
+  owners = ["711129375688"] # HashiCorp se_demos_dev account
 }
 
 module "vault" {
