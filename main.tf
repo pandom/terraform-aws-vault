@@ -65,9 +65,9 @@ module "vault" {
 }
 
 resource aws_route53_record "this" {
-  count   = length(split(",", var.hostname))
+  count   = length(var.hostname)
   zone_id = data.aws_route53_zone.this.id
-  name    = "${split(",", var.hostname)[count.index]}.${data.aws_route53_zone.this.name}"
+  name    = "${var.hostname[count.index]}.${data.aws_route53_zone.this.name}"
   type    = "A"
   ttl     = "300"
   records = [module.vault.public_ip[count.index]]
