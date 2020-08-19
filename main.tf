@@ -42,7 +42,7 @@ module "vault" {
   version = "2.13.0"
 
   name = var.hostname
-  instance_count = 1
+  instance_count = 2
 
   private_ip = var.private_ip
 
