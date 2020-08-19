@@ -1,6 +1,6 @@
 variable hostname {
   type = string
-  default = "vault"
+  default = "vault0,vault1"
 }
 
 variable key_name {
@@ -33,5 +33,5 @@ variable slack_webhook {
 
 variable private_ip {
   type = string
-  default = "10.0.101.161"
+  default = "10.0.101.161,10.0.101.162"
 }

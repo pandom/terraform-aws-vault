@@ -42,7 +42,7 @@ module "vault" {
   version = "2.13.0"
 
   name = var.hostname
-  instance_count = 1
+  instance_count = 2
 
   private_ip = var.private_ip
 
@@ -65,11 +65,12 @@ module "vault" {
 }
 
 resource aws_route53_record "this" {
+  count   = length(split(",", var.hostname))
   zone_id = data.aws_route53_zone.this.id
-  name    = "${var.hostname}.${data.aws_route53_zone.this.name}"
+  name    = "${split(",", var.hostname)[count.index]}.${data.aws_route53_zone.this.name}"
   type    = "A"
   ttl     = "300"
-  records = [module.vault.public_ip[0]]
+  records = [module.vault.public_ip[count.index]]
 }
 
 module "security_group_vault" {
