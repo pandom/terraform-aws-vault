@@ -1,7 +1,12 @@
 variable hostname {
-  type = list
+  type = string
   default = ["vault0"]
 }
+
+// variable hostname {
+//   type = list
+//   default = ["vault0,vault1"]
+// }
 
 variable key_name {
   type    = string
@@ -31,7 +36,12 @@ variable slack_webhook {
   default = ""
 }
 
+// variable private_ip {
+//   type = list
+//   default = ["10.0.101.161","10.0.101.162"]
+// }
+
 variable private_ip {
-  type = list
-  default = ["10.0.101.161","10.0.101.162"]
+  type = string
+  default = ["10.0.101.161"]
 }
