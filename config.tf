@@ -1,9 +1,9 @@
 data template_file "userdata" {
-  template = file("${path.module}/templates/userdata.yaml")
+  template = file("./templates/userdata.yaml")
 
   vars = {
     ip_address       = var.private_ip,
-    vault_conf       = base64encode(templatefile("${path.module}/templates/vault.conf",
+    vault_conf       = base64encode(templatefile("./templates/vault.conf",
       {
         listener     = var.private_ip
         ip_addresses = [var.private_ip]
