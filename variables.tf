@@ -1,6 +1,6 @@
 variable hostname {
   type = list
-  default = ["vault0","vault1"]
+  default = ["vault0"]
 }
 
 variable key_name {

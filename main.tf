@@ -41,8 +41,8 @@ module "vault" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "2.13.0"
 
-  name = "vault0,vault1"
-  instance_count = 2
+  name = "vault0"
+  instance_count = 1
 
   #private_ip = var.private_ip
 
@@ -67,10 +67,12 @@ module "vault" {
 resource aws_route53_record "this" {
   count   = length(var.hostname)
   zone_id = data.aws_route53_zone.this.id
-  name    = "${var.hostname[count.index]}.${data.aws_route53_zone.this.name}"
+  #name    = "${var.hostname[count.index]}.${data.aws_route53_zone.this.name}"
+  name    = "${var.hostname}.${data.aws_route53_zone.this.name}"
   type    = "A"
   ttl     = "300"
-  records = [module.vault.public_ip[count.index]]
+  records = [module.vault.public_ip]
+  #records = [module.vault.public_ip[count.index]]
 }
 
 module "security_group_vault" {
