@@ -18,7 +18,7 @@
       "ssh_username": "ubuntu",
       "ami_name": "vault-{{isotime | clean_resource_name}}",
       "tags": {
-        "owner": "Grant Orchard",
+        "owner": "Anthony Burke",
         "Base_AMI_Name": "{{ .SourceAMIName }}",
         "application": "vault-{{user `vault_version`}}"
       }

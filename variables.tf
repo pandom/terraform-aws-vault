@@ -5,7 +5,7 @@ variable hostname {
 
 variable key_name {
   type    = string
-  default = "go"
+  default = "burkey"
 }
 
 variable tags {

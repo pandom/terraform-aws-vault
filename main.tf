@@ -2,7 +2,7 @@ data terraform_remote_state "this" {
   backend = "remote"
 
   config = {
-    organization = "grantorchard"
+    organization = "burkey"
     workspaces = {
       name = "terraform-aws-core"
     }
@@ -17,7 +17,7 @@ locals {
 }
 
 data aws_route53_zone "this" {
-  name         = "go.hashidemos.io"
+  name         = "burkey.hashidemos.io"
   private_zone = false
 }
 
@@ -26,7 +26,7 @@ data aws_ami "ubuntu" {
 
   filter {
     name = "tag:application"
-    values = ["vault-1.4.0"]
+    values = ["vault-1.6.0"]
   }
 
   filter {

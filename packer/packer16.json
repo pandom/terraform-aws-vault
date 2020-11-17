@@ -1,0 +1,25 @@
+{
+    "variables": {
+      "vault_version": "1.6.0"
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "source_ami": "ami-0d8de86102069eaf3",
+        "instance_type": "t2.medium",
+        "ssh_username": "ubuntu",
+        "ami_name": "vault-{{isotime | clean_resource_name}}",
+        "tags": {
+          "owner": "Anthony Burke",
+          "Base_AMI_Name": "{{ .SourceAMIName }}",
+          "application": "vault-{{user `vault_version`}}"
+        }
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "ansible",
+        "playbook_file": "./playbooks/playbook.yml"
+      }
+    ]
+   }
