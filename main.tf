@@ -127,7 +127,7 @@ resource aws_iam_instance_profile "this" {
 }
 
 resource aws_iam_role "this" {
-  name_prefix        = var.hostname
+  name_prefix        = "vault0"
   assume_role_policy = data.aws_iam_policy_document.assume.json
 }
 
