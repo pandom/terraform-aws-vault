@@ -44,7 +44,7 @@ module "vault" {
   name = "vault0"
   instance_count = 1
 
-  #private_ip = var.private_ip
+  private_ip = var.private_ip
 
   user_data_base64 = base64gzip(data.template_file.userdata.rendered)
 
