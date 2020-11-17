@@ -41,8 +41,8 @@ module "vault" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "2.13.0"
 
-  name = "vault0,vault1"
-  instance_count = 2
+  name = "vault0"
+  instance_count = 1
 
   #private_ip = var.private_ip
 
